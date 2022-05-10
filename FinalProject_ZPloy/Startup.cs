@@ -1,4 +1,6 @@
 using FinalProject_ZPloy.Models;
+using FinalProject_ZPloy.Services.EFServices;
+using FinalProject_ZPloy.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,9 @@ namespace FinalProject_ZPloy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddTransient<IUserService, EFUserService>();
+
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));
         }
 

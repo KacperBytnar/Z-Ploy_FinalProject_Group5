@@ -2,3 +2,10 @@
 @model FinalProject_ZPloy.Pages.UserAccount.DisplayUserModel
 @{
 }
+
+@foreach (var user in Model.users)
+{
+    <h1>NAME: @user.Name</h1>
+    <h1>AGE: @user.Age</h1>
+    <h1>Description: <\br>@user.description</h1>
+}

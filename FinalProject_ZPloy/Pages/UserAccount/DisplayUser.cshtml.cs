@@ -11,8 +11,9 @@ namespace FinalProject_ZPloy.Pages.UserAccount
 {
     public class DisplayUserModel : PageModel
     {
-        public User User { get; set; }
-        IUserService userService;
+        [BindProperty]
+        public List<User> users { get; set; }
+        private IUserService userService;
 
         public DisplayUserModel(IUserService service)
         {
@@ -21,6 +22,7 @@ namespace FinalProject_ZPloy.Pages.UserAccount
         
         public void OnGet()
         {
+            users = userService.GetAllUsers();
         }
     }
 }
