@@ -16,7 +16,6 @@ namespace FinalProject_ZPloy.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
-        public virtual DbSet<BoardOfTasks> ActiveTasks { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Inbox> Inboxes { get; set; }
     }

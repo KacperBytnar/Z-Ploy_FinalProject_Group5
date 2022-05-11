@@ -9,5 +9,6 @@ namespace FinalProject_ZPloy.Services.Interfaces
     public interface IUserService
     {
         public List<User> GetAllUsers();
+        public void CreateUser(User user);
     }
 }

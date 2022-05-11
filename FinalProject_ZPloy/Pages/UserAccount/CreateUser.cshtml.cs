@@ -11,7 +11,8 @@ namespace FinalProject_ZPloy.Pages.UserAccount
 {
     public class CreateUserModel : PageModel
     {
-        public User User { get; set; }
+        [BindProperty]
+        public User User { get; set; } = new User();
         public string registerMessage { get; set; }
         [BindProperty]
         public string ConfirmPassword { get; set; }
@@ -24,5 +25,25 @@ namespace FinalProject_ZPloy.Pages.UserAccount
         public void OnGet()
         {
         }
+
+        public IActionResult OnPost()
+        {
+            //if (User.Password != ConfirmPassword)
+            //{
+            //    registerMessage = "Passwords are different!";
+            //    return Page();
+            //}
+            //else if (User.Password == null)
+            //{
+            //    registerMessage = "Passwords can't be empty!";
+            //    return Page();
+            //}
+            //else
+            //{
+                userService.CreateUser(User);
+                return Redirect("/UserAccount/DisplayUser");
+            //}
+        }
     }
 }
+

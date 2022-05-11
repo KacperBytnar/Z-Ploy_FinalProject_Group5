@@ -14,6 +14,13 @@ namespace FinalProject_ZPloy.Services.EFServices
         {
             context = userContext;
         }
+
+        public void CreateUser(User user)
+        {
+            context.Users.Add(user);
+            context.SaveChanges();
+        }
+
         public List<User> GetAllUsers()
         {
             return context.Users.ToList();

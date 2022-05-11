@@ -80,3 +80,4 @@ C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Deb
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\FinalProject_ZPloy.genruntimeconfig.cache
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\UserAccount\CreateUser.cshtml.g.cs
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\UserAccount\DisplayUser.cshtml.g.cs
+C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\UserAccount\AccountLogIn.cshtml.g.cs

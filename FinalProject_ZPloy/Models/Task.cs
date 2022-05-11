@@ -9,8 +9,9 @@ namespace FinalProject_ZPloy.Models
     {
         public int TaskID { get; set; }
         public string Title { get; set; }
-        public string? PictureName { get; set; }
-        public string Location { get; set; }
+        public string Description { get; set; }
+        public string? Location { get; set; }
+        public DateTime DueDate { get; set; }
         public int Prize { get; set; }
         public string PaymentMethod { get; set; }
         public bool isDone { get; set; }
@@ -19,7 +20,10 @@ namespace FinalProject_ZPloy.Models
 
         // Foreign Keys
         public int UserID { get; set; }
+        //public int UserID2 { get; set; }
+
         // Navigation Properties
         public virtual User User { get; set; }
+        //public virtual User User2 { get; set; }
     }
 }
