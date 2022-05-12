@@ -10,5 +10,6 @@ namespace FinalProject_ZPloy.Services.Interfaces
     {
         public List<User> GetAllUsers();
         public void CreateUser(User user);
+        public bool Login(string login, string password);
     }
 }

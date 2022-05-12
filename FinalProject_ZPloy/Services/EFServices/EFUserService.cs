@@ -21,6 +21,18 @@ namespace FinalProject_ZPloy.Services.EFServices
             context.SaveChanges();
         }
 
+        public bool Login(string login, string password)
+        {
+            foreach (User user in GetAllUsers())
+            {
+                if ((user.Username == login) && (user.Password == password))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public List<User> GetAllUsers()
         {
             return context.Users.ToList();

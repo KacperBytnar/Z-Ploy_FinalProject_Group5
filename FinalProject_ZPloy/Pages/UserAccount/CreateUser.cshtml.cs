@@ -28,21 +28,21 @@ namespace FinalProject_ZPloy.Pages.UserAccount
 
         public IActionResult OnPost()
         {
-            //if (User.Password != ConfirmPassword)
-            //{
-            //    registerMessage = "Passwords are different!";
-            //    return Page();
-            //}
-            //else if (User.Password == null)
-            //{
-            //    registerMessage = "Passwords can't be empty!";
-            //    return Page();
-            //}
-            //else
-            //{
+            if (User.Password != ConfirmPassword)
+            {
+                registerMessage = "Passwords are different!";
+                return Page();
+            }
+            else if (User.Password == null)
+            {
+                registerMessage = "Passwords can't be empty!";
+                return Page();
+            }
+            else
+            {
                 userService.CreateUser(User);
                 return Redirect("/UserAccount/DisplayUser");
-            //}
+            }
         }
     }
 }

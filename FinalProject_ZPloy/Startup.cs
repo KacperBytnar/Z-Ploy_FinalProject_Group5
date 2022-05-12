@@ -27,7 +27,15 @@ namespace FinalProject_ZPloy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddRazorPages();
+            //services.AddMvc(option => option.EnableEndpointRouting = false)
+            //services.AddSession(options =>
+            //{
+            //    options.IdleTimeout = TimeSpan.FromMinutes(30);//We set Time here 
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.IsEssential = true;
+            //});
 
             services.AddTransient<IUserService, EFUserService>();
 
@@ -54,7 +62,8 @@ namespace FinalProject_ZPloy
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //app.UseSession();
+            //app.UseMvc();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

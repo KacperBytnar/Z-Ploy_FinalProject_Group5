@@ -12,12 +12,12 @@
     </div>
     <div class="form-group">
         <label asp-for="@Model.User.Password" class="control-label">Password</label>
-        <input asp-for="@Model.User.Password" class="form-control" />
+        <input type="password" asp-for="@Model.User.Password" class="form-control" />
         <span asp-validation-for="@Model.User.Password" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.ConfirmPassword" class="control-label">Confirm Password</label>
-        <input asp-for="@Model.ConfirmPassword" class="form-control" />
+        <input type="password" asp-for="@Model.ConfirmPassword" class="form-control" />
     </div>
     <h3 style="margin-bottom:20px; text-align:center; color: red; font-family: " Comic Sans MS";> @Model.registerMessage</h3>
     <div class="form-group">
