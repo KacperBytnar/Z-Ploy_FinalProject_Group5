@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace FinalProject_ZPloy.Services.Interfaces
 {
-    interface ITaskService
+    public interface ITaskService
     {
+        public void CreateTask(Models.Task task);
+        public IEnumerable<Models.Task> GetAllTasks();
     }
 }

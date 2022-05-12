@@ -38,6 +38,7 @@ namespace FinalProject_ZPloy
             //});
 
             services.AddTransient<IUserService, EFUserService>();
+            services.AddTransient<ITaskService, EFTaskService>();
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));
         }
