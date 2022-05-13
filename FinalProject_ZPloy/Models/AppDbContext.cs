@@ -18,5 +18,16 @@ namespace FinalProject_ZPloy.Models
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Inbox> Inboxes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Task>()
+                .HasOne<User>(u => u.User)
+                .WithMany(g => g.CompletedTasks)
+                .HasForeignKey(l => l.PerformerID)
+                .HasForeignKey(p => p.CreatorID);
+
+            //base.OnModelCreating(modelBuilder); jd
+        }
     }
 }

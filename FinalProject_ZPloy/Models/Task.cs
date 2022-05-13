@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +9,7 @@ namespace FinalProject_ZPloy.Models
 {
     public class Task
     {
+        [Key]
         public int TaskID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -19,11 +22,13 @@ namespace FinalProject_ZPloy.Models
 
 
         // Foreign Keys
-        public int UserID { get; set; }
-        //public int UserID2 { get; set; }
+        [ForeignKey(nameof(CreatorID))]
+        public int CreatorID { get; set; }
+
+        [ForeignKey(nameof(PerformerID))]
+        public int? PerformerID { get; set; }
 
         // Navigation Properties
         public virtual User User { get; set; }
-        //public virtual User User2 { get; set; }
     }
 }

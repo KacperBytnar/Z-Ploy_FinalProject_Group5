@@ -81,6 +81,9 @@ namespace FinalProject_ZPloy.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CreatorID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,21 +96,21 @@ namespace FinalProject_ZPloy.Migrations
                     b.Property<string>("PaymentMethod")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PerformerID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Prize")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.Property<bool>("isDone")
                         .HasColumnType("bit");
 
                     b.HasKey("TaskID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("CreatorID");
 
                     b.ToTable("Tasks");
                 });
@@ -126,6 +129,9 @@ namespace FinalProject_ZPloy.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -164,7 +170,7 @@ namespace FinalProject_ZPloy.Migrations
                 {
                     b.HasOne("FinalProject_ZPloy.Models.User", "User")
                         .WithMany("CompletedTasks")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
