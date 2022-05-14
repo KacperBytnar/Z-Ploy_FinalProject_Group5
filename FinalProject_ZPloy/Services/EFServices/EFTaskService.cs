@@ -18,7 +18,7 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         public void CreateTask(Models.Task task)
         {
-            task.PerformerID = 1;
+            //task.PerformerID = 1;
             context.Tasks.Add(task);
             context.SaveChanges();
         }

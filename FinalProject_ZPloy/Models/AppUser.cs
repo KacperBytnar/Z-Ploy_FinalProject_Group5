@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace FinalProject_ZPloy.Models
 {
-    public class User
+    public class AppUser : IdentityUser<int>
     {
-        [Key]
-        public int UserID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public override int Id { get; set; }
+        public string XDUsername { get; set; }
+        public string lolPassword { get; set; }
         public string? Gender { get; set; }
         public int? Age { get; set; }
         public string? Picture { get; set; }
         public string? Description { get; set; }
-        public string? Email { get; set; }
+        //public string? Email { get; set; }
 
 
         // Navigation Properties

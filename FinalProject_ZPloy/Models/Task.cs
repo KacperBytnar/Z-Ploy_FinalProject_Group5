@@ -29,6 +29,6 @@ namespace FinalProject_ZPloy.Models
         public int? PerformerID { get; set; }
 
         // Navigation Properties
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

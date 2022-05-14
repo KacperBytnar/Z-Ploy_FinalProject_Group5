@@ -13,7 +13,7 @@ namespace FinalProject_ZPloy.Models
         public int UserID { get; set; }
 
         //  Navigation Properties
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
         public virtual ICollection<Notification> Notifications {get;set;}
     }
 }

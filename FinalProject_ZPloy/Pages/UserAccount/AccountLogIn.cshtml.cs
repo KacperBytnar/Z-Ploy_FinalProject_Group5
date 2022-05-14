@@ -43,7 +43,7 @@ namespace FinalProject_ZPloy.Pages.UserAccount
             var login = Request.Form["username"];
             var password = Request.Form["password"];
 
-            if (userService.Login(login,password)==true)
+            if (userService.ValidateUser(login,password)==true)
             {
                 //User User = catalog.GetUserWithLogin(login);
                 //if (User.isAdmin == true)

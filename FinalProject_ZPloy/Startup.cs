@@ -4,6 +4,7 @@ using FinalProject_ZPloy.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,16 @@ namespace FinalProject_ZPloy
 
             services.AddTransient<IUserService, EFUserService>();
             services.AddTransient<ITaskService, EFTaskService>();
+
+            services.AddIdentity<AppUser, IdentityRole<int>>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+
+            })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders()
+                .AddRoles<IdentityRole<int>>();
+
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));
         }

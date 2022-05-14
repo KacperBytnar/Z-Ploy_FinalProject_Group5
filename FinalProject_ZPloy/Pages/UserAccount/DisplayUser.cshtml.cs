@@ -12,7 +12,7 @@ namespace FinalProject_ZPloy.Pages.UserAccount
     public class DisplayUserModel : PageModel
     {
         [BindProperty]
-        public List<User> users { get; set; }
+        public List<AppUser> users { get; set; }
         private IUserService userService;
 
         public DisplayUserModel(IUserService service)

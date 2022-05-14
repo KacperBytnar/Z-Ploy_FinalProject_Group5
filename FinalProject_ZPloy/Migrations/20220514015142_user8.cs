@@ -2,17 +2,22 @@
 
 namespace FinalProject_ZPloy.Migrations
 {
-    public partial class test8 : Migration
+    public partial class user8 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Tasks_Users_PerformerID",
+                name: "FK_Tasks_AspNetUsers_UserId",
                 table: "Tasks");
 
             migrationBuilder.DropIndex(
-                name: "IX_Tasks_PerformerID",
+                name: "IX_Tasks_UserId",
                 table: "Tasks");
+
+            migrationBuilder.RenameColumn(
+                name: "UserId",
+                table: "Tasks",
+                newName: "PerformerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_CreatorID",
@@ -20,35 +25,40 @@ namespace FinalProject_ZPloy.Migrations
                 column: "CreatorID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Tasks_Users_CreatorID",
+                name: "FK_Tasks_AspNetUsers_CreatorID",
                 table: "Tasks",
                 column: "CreatorID",
-                principalTable: "Users",
-                principalColumn: "UserID",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Tasks_Users_CreatorID",
+                name: "FK_Tasks_AspNetUsers_CreatorID",
                 table: "Tasks");
 
             migrationBuilder.DropIndex(
                 name: "IX_Tasks_CreatorID",
                 table: "Tasks");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Tasks_PerformerID",
+            migrationBuilder.RenameColumn(
+                name: "PerformerID",
                 table: "Tasks",
-                column: "PerformerID");
+                newName: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tasks_UserId",
+                table: "Tasks",
+                column: "UserId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Tasks_Users_PerformerID",
+                name: "FK_Tasks_AspNetUsers_UserId",
                 table: "Tasks",
-                column: "PerformerID",
-                principalTable: "Users",
-                principalColumn: "UserID",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
     }

@@ -8,8 +8,8 @@ namespace FinalProject_ZPloy.Services.Interfaces
 {
     public interface IUserService
     {
-        public List<User> GetAllUsers();
-        public void CreateUser(User user);
-        public bool Login(string login, string password);
+        public List<AppUser> GetAllUsers();
+        public void CreateUser(AppUser user);
+        public bool ValidateUser(string login, string password);
     }
 }

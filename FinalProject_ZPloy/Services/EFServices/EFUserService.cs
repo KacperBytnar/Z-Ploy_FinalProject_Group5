@@ -15,27 +15,27 @@ namespace FinalProject_ZPloy.Services.EFServices
             context = userContext;
         }
 
-        public void CreateUser(User user)
+        public void CreateUser(AppUser user)
         {
-            context.Users.Add(user);
+            //context.AppUsers.Add(user);
             context.SaveChanges();
         }
 
-        public bool Login(string login, string password)
+        public bool ValidateUser(string login, string password)
         {
-            foreach (User user in GetAllUsers())
-            {
-                if ((user.Username == login) && (user.Password == password))
-                {
-                    return true;
-                }
-            }
+            //foreach (AppUser user in GetAllUsers())
+            //{
+            //    if ((user.Username == login) && (user.Password == password))
+            //    {
+            //        return true;
+            //    }
+            //}
             return false;
         }
 
-        public List<User> GetAllUsers()
+        public List<AppUser> GetAllUsers()
         {
-            return context.Users.ToList();
+            return new List<AppUser>(); /*context.AppUsers.ToList();*/
         }
     }
 }
