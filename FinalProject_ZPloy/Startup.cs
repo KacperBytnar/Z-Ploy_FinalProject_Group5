@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,14 +35,14 @@ namespace FinalProject_ZPloy
             services.AddTransient<IUserService, EFUserService>();
             services.AddTransient<ITaskService, EFTaskService>();
 
-            services.AddIdentity<AppUser, IdentityRole<int>>(options =>
-            {
-                options.SignIn.RequireConfirmedAccount = true;
+            IServiceCollection serviceCollection = services.AddHttpContextAccessor();
 
-            })
-                .AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultTokenProviders()
-                .AddRoles<IdentityRole<int>>();
+
+
+            services.AddIdentity<AppUser, IdentityRole<int>>()
+                .AddEntityFrameworkStores<AppDbContext>();
+                //.AddDefaultTokenProviders()
+                //.AddRoles<IdentityRole<int>>();
 
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));

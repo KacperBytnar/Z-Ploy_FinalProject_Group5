@@ -1,5 +1,6 @@
 ﻿using FinalProject_ZPloy.Models;
 using FinalProject_ZPloy.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace FinalProject_ZPloy.Services.EFServices
     public class EFUserService : IUserService
     {
         private AppDbContext context;
-        public EFUserService(AppDbContext userContext)
+        private readonly UserManager<AppUser> userManager;
+        public EFUserService(AppDbContext userContext, UserManager<AppUser> userManager)
         {
             context = userContext;
+            this.userManager = userManager;
         }
 
         public void CreateUser(AppUser user)
@@ -35,7 +38,7 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         public List<AppUser> GetAllUsers()
         {
-            return new List<AppUser>(); /*context.AppUsers.ToList();*/
+            return userManager.Users.ToList();
         }
     }
 }
