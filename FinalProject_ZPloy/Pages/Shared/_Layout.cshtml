@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using FinalProject_ZPloy.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<AppUser> signInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,8 +14,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Z-Ploy</a>
+            <div class="container" style="margin: auto;">
+                <a  class="navbar-brand" style="margin-left:10px;" asp-area="" asp-page="/Index">Z-Ploy</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,14 +35,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Tasks/GetAllTasks">AllTasks</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/UserAccount/CreateUser">Create Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/UserAccount/AccountLogin">Log In</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/UserAccount/DisplayUser">Display Users</a>
                         </li>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                    <li class="nav-item float-right" style="margin-left:450px";>
+                        <form class="form-inline" asp-page="/UserAccount/LogOut" method="post">
+                            <button type="submit" class="nav-link btn btn-lnk text-dark">Hello @User.Identity.Name      <p class="btn-dark"> Logout</p></button>
+                        </form>
+                    </li>
+ }
+                else
+                {
+                    <li class="nav-item float-right" style="margin-left:500px;">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/UserAccount/CreateUser">Create Account</a>
+                    </li>
+                    <li class="nav-item float-right" style="margin-left:15px;">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/UserAccount/AccountLogin">Log In</a>
+                     </li>
+                 }
                     </ul>
                 </div>
             </div>
