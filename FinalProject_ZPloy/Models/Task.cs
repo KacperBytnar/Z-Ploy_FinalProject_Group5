@@ -11,7 +11,7 @@ namespace FinalProject_ZPloy.Models
     {
         public Task()
         {
-            this.Users = new HashSet<AppUser>();
+            //this.Users = new HashSet<AppUser>();
         }
         [Key]
         public int TaskID { get; set; }
@@ -36,6 +36,7 @@ namespace FinalProject_ZPloy.Models
 
         // Navigation Properties
         public virtual AppUser User { get; set; }
-        public virtual ICollection<AppUser> Users{ get; set; }
+        //public virtual ICollection<AppUser> Users{ get; set; }
+        public virtual ICollection<UserBidOnTask> Bids { get; set; }
     }
 }

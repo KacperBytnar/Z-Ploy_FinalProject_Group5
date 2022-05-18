@@ -4,20 +4,37 @@ using FinalProject_ZPloy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FinalProject_ZPloy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220518025623_taskuser8")]
+    partial class taskuser8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AppUserTask", b =>
+                {
+                    b.Property<int>("CompletedTasksTaskID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompletedTasksTaskID", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AppUserTask");
+                });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
                 {
@@ -352,6 +369,21 @@ namespace FinalProject_ZPloy.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AppUserTask", b =>
+                {
+                    b.HasOne("FinalProject_ZPloy.Models.Task", null)
+                        .WithMany()
+                        .HasForeignKey("CompletedTasksTaskID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProject_ZPloy.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
@@ -373,7 +405,7 @@ namespace FinalProject_ZPloy.Migrations
             modelBuilder.Entity("FinalProject_ZPloy.Models.Task", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
-                        .WithMany("CompletedTasks")
+                        .WithMany("CreatedTasks")
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -453,7 +485,7 @@ namespace FinalProject_ZPloy.Migrations
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
                 {
-                    b.Navigation("CompletedTasks");
+                    b.Navigation("CreatedTasks");
                 });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>

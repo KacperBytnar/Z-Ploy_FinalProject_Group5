@@ -18,7 +18,7 @@ namespace FinalProject_ZPloy.Models
 
         public virtual DbSet<AppUser> AppUsers { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
-        //public virtual DbSet<UserBidOnTask> UserBids { get; set; }
+        public virtual DbSet<UserBidOnTask> UserBids { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Inbox> Inboxes { get; set; }
@@ -29,14 +29,14 @@ namespace FinalProject_ZPloy.Models
 
             modelBuilder.Entity<Task>()
                 .HasOne<AppUser>(u => u.User)
-                .WithMany(g => g.CreatedTasks)
+                .WithMany(g => g.CompletedTasks)
                                             .OnDelete(DeleteBehavior.Restrict)
                                 //.HasForeignKey(l => l.PerformerID)
                                 .HasForeignKey(p => p.CreatorID);
 
-            modelBuilder.Entity<Task>()
-            .HasMany<AppUser>(s => s.Users)
-            .WithMany(c => c.CompletedTasks);
+            //modelBuilder.Entity<Task>()
+            //.HasMany<AppUser>(s => s.Users)
+            //.WithMany(c => c.CompletedTasks);
             //.Map(cs =>
             //{
             //    cs.MapLeftKey("StudentRefId");

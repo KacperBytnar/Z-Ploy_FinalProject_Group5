@@ -14,17 +14,12 @@ namespace FinalProject_ZPloy.Models
         public bool? isAccepted { get; set; }
 
         // Foreign Keys
-        //[ForeignKey(nameof(TaskID))]
-        //[Required]
-        //public int TaskID { get; set; }
-        [ForeignKey(nameof(UserID))]
-        [Required]
+
+        public int TaskID { get; set; }
         public int UserID { get; set; }
 
         // Navigation Properties
-        //[ForeignKey(nameof(TaskID))]
-        //public virtual Task Task { get; set; }
-        //[ForeignKey(nameof(UserID))]
+        public virtual Task Task { get; set; }
         public virtual AppUser User { get; set; }
     }
 }
