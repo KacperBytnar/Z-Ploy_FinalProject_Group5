@@ -1,8 +1,11 @@
 ﻿using FinalProject_ZPloy.Models;
 using FinalProject_ZPloy.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace FinalProject_ZPloy.Services.EFServices
@@ -11,15 +14,18 @@ namespace FinalProject_ZPloy.Services.EFServices
     {
 
         private AppDbContext context;
+        private readonly UserManager<AppUser> userManager;
+        public string UserID { get; set; }
 
-        public EFTaskService(AppDbContext dbcontext)
+        public EFTaskService(AppDbContext dbcontext, UserManager<AppUser> userManager)
         {
             context = dbcontext;
+            this.userManager = userManager;
         }
 
-        public void CreateTask(Models.Task task)
+        public void CreateTask(Models.Task task, int creatorID)
         {
-            task.CreatorID = 1;
+            task.CreatorID = creatorID;/*userManager.GetUserId(userManager.GetUserAsync())*/
             context.Tasks.Add(task);
             context.SaveChanges();
         }
@@ -33,7 +39,6 @@ namespace FinalProject_ZPloy.Services.EFServices
         {
             return context.Tasks.Where(t => t.TaskID == id).FirstOrDefault(t => t.TaskID == id);
         }
-
 
 
         public void DeleteTask(int id)
@@ -71,4 +76,15 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         }
     }
+
+    public static class UserHelpers
+    {
+        public static string GetUserId(this IPrincipal principal)
+        {
+            var claimsIdentity = (ClaimsIdentity)principal.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            return claim.Value;
+        }
+    }
+
 }

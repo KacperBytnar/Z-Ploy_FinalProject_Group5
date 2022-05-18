@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FinalProject_ZPloy.Common;
 using FinalProject_ZPloy.Models;
 using FinalProject_ZPloy.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +17,8 @@ namespace FinalProject_ZPloy.Pages.UserAccount
         [BindProperty]
         public List<AppUser> users { get; set; }
         private IUserService userService;
-
+        [BindProperty]
+        public int UserID { get; set; }
         public DisplayUserModel(IUserService service)
         {
             userService = service; 
@@ -25,6 +27,7 @@ namespace FinalProject_ZPloy.Pages.UserAccount
         public void OnGet()
         {
             users = userService.GetAllUsers();
+            UserID = User.GetUserId();
         }
     }
 }

@@ -15,8 +15,8 @@ namespace FinalProject_ZPloy.Models
             //this.CreatedTasks = new HashSet<Task>();
         }
         public override int Id { get; set; }
-        public string XDUsername { get; set; }
-        public string lolPassword { get; set; }
+        //public string XDUsername { get; set; }
+        //public string lolPassword { get; set; }
         public string? Gender { get; set; }
         public int? Age { get; set; }
         public string? Picture { get; set; }

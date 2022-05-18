@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace FinalProject_ZPloy.Services.EFServices
@@ -23,6 +25,13 @@ namespace FinalProject_ZPloy.Services.EFServices
             //context.AppUsers.Add(user);
             context.SaveChanges();
         }
+
+        //public static string GetUserId(this IPrincipal principal)
+        //{
+        //    var claimsIdentity = (ClaimsIdentity)principal.Identity;
+        //    var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+        //    return claim.Value;
+        //}
 
         public bool ValidateUser(string login, string password)
         {

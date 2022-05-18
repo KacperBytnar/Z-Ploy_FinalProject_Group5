@@ -7,7 +7,7 @@ namespace FinalProject_ZPloy.Services.Interfaces
 {
     public interface ITaskService
     {
-        void CreateTask(Models.Task task);
+        void CreateTask(Models.Task task, int creatorID);
 
         IEnumerable<Models.Task> GetAllTasks();
 

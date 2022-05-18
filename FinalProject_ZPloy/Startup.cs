@@ -44,6 +44,12 @@ namespace FinalProject_ZPloy
                 .AddEntityFrameworkStores<AppDbContext>();
             //.AddDefaultTokenProviders()
             //.AddRoles<IdentityRole<int>>();
+            services.AddAuthentication("CookiesUserAuth").AddCookie("CookiesUserAuth",
+        options =>
+    {
+        options.Cookie.Name = "CookiesUserAuth";
+        options.LoginPath = "/UserAccount/Login";
+    });
             services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = "/UserAccount/AccountLogIn";
