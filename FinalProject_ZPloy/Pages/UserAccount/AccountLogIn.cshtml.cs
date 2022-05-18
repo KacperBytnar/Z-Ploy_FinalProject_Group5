@@ -21,28 +21,31 @@ namespace FinalProject_ZPloy.Pages.UserAccount
 
         //private IUserService userService;
         private readonly SignInManager<AppUser> signInManager;
+        public string URL { get; set; }
 
         public AccountLogInModel(SignInManager<AppUser> signInManager)
         {
             this.signInManager = signInManager;
         }
-        public void OnGet()
+
+        public void OnGet(string ReturnURL)
         {
+            URL = ReturnURL;
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(string ReturnURL)
         {
             try
             {
                 var result = await signInManager.PasswordSignInAsync(loginModel.Username, loginModel.Password, loginModel.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/UserAccount/DisplayUser");
+                    return RedirectToPage(ReturnURL);
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid data!");
-                    LoginMessage = "Invalid data!";
+                    ModelState.AddModelError(string.Empty, "Wrong username or password. Please try again.");
+                    LoginMessage = "Wrong username or password. Please try again.";
                     return Page();
                 }
             }
@@ -51,25 +54,6 @@ namespace FinalProject_ZPloy.Pages.UserAccount
                 LoginMessage = e.Message;
                 return Page();
             }
-
-            //var login = Request.Form["username"];
-            //var password = Request.Form["password"];
-
-            //if (userService.ValidateUser(login,password)==true)
-            //{
-            //    //User User = catalog.GetUserWithLogin(login);
-            //    //if (User.isAdmin == true)
-            //    //{
-            //        // an admin
-            //        //HttpContext.Session.SetString("user", login);
-            //        return Redirect("/UserAccount/DisplayUser");
-                //}
-                ////normal user with a login account
-                //else
-                //{
-                //    HttpContext.Session.SetString("normal", User.Name);
-                //    return Redirect("/AllEvents/Events");
-                //}
         }
     }
 }

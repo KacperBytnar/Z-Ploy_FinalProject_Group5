@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject_ZPloy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220513210212_user7")]
-    partial class user7
+    [Migration("20220518024416_taskuser4")]
+    partial class taskuser4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace FinalProject_ZPloy.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AppUserTask", b =>
+                {
+                    b.Property<int>("CompletedTasksTaskID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompletedTasksTaskID", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AppUserTask");
+                });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
                 {
@@ -189,15 +204,12 @@ namespace FinalProject_ZPloy.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("isDone")
                         .HasColumnType("bit");
 
                     b.HasKey("TaskID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CreatorID");
 
                     b.ToTable("Tasks");
                 });
@@ -332,6 +344,21 @@ namespace FinalProject_ZPloy.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AppUserTask", b =>
+                {
+                    b.HasOne("FinalProject_ZPloy.Models.Task", null)
+                        .WithMany()
+                        .HasForeignKey("CompletedTasksTaskID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProject_ZPloy.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
@@ -353,8 +380,10 @@ namespace FinalProject_ZPloy.Migrations
             modelBuilder.Entity("FinalProject_ZPloy.Models.Task", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("CreatedTasks")
+                        .HasForeignKey("CreatorID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -408,6 +437,11 @@ namespace FinalProject_ZPloy.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
+                {
+                    b.Navigation("CreatedTasks");
                 });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>

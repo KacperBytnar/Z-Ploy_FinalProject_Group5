@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject_ZPloy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220514015142_user8")]
-    partial class user8
+    [Migration("20220518022503_taskuser")]
+    partial class taskuser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,9 @@ namespace FinalProject_ZPloy.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TaskID")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -102,6 +105,8 @@ namespace FinalProject_ZPloy.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("TaskID");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -182,9 +187,6 @@ namespace FinalProject_ZPloy.Migrations
 
                     b.Property<string>("PaymentMethod")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PerformerID")
-                        .HasColumnType("int");
 
                     b.Property<int>("Prize")
                         .HasColumnType("int");
@@ -332,6 +334,13 @@ namespace FinalProject_ZPloy.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
+                {
+                    b.HasOne("FinalProject_ZPloy.Models.Task", null)
+                        .WithMany("Users")
+                        .HasForeignKey("TaskID");
+                });
+
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
@@ -355,7 +364,7 @@ namespace FinalProject_ZPloy.Migrations
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
                         .WithMany("CompletedTasks")
                         .HasForeignKey("CreatorID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -420,6 +429,11 @@ namespace FinalProject_ZPloy.Migrations
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>
                 {
                     b.Navigation("Notifications");
+                });
+
+            modelBuilder.Entity("FinalProject_ZPloy.Models.Task", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,6 +9,10 @@ namespace FinalProject_ZPloy.Models
 {
     public class Task
     {
+        public Task()
+        {
+            this.Users = new HashSet<AppUser>();
+        }
         [Key]
         public int TaskID { get; set; }
         public string Title { get; set; }
@@ -18,6 +22,8 @@ namespace FinalProject_ZPloy.Models
         public int Prize { get; set; }
         public string PaymentMethod { get; set; }
         public bool isDone { get; set; }
+        // Open | In proggress | Done
+        //public string State { get; set; }
         public string Category { get; set; }
 
 
@@ -25,10 +31,11 @@ namespace FinalProject_ZPloy.Models
         [ForeignKey(nameof(CreatorID))]
         public int CreatorID { get; set; }
 
-        [ForeignKey(nameof(PerformerID))]
-        public int? PerformerID { get; set; }
+        //[ForeignKey(nameof(PerformerID))]
+        //public int? PerformerID { get; set; }
 
         // Navigation Properties
         public virtual AppUser User { get; set; }
+        public virtual ICollection<AppUser> Users{ get; set; }
     }
 }

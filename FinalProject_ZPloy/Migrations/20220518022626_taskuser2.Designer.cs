@@ -4,35 +4,22 @@ using FinalProject_ZPloy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FinalProject_ZPloy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220518022626_taskuser2")]
+    partial class taskuser2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("AppUserTask", b =>
-                {
-                    b.Property<int>("CompletedTasksTaskID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CompletedTasksTaskID", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("AppUserTask");
-                });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
                 {
@@ -93,6 +80,9 @@ namespace FinalProject_ZPloy.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TaskID")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -115,6 +105,8 @@ namespace FinalProject_ZPloy.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("TaskID");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -342,19 +334,11 @@ namespace FinalProject_ZPloy.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("AppUserTask", b =>
+            modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.Task", null)
-                        .WithMany()
-                        .HasForeignKey("CompletedTasksTaskID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FinalProject_ZPloy.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Users")
+                        .HasForeignKey("TaskID");
                 });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>
@@ -378,7 +362,7 @@ namespace FinalProject_ZPloy.Migrations
             modelBuilder.Entity("FinalProject_ZPloy.Models.Task", b =>
                 {
                     b.HasOne("FinalProject_ZPloy.Models.AppUser", "User")
-                        .WithMany("CreatedTasks")
+                        .WithMany("CompletedTasks")
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -439,12 +423,17 @@ namespace FinalProject_ZPloy.Migrations
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.AppUser", b =>
                 {
-                    b.Navigation("CreatedTasks");
+                    b.Navigation("CompletedTasks");
                 });
 
             modelBuilder.Entity("FinalProject_ZPloy.Models.Inbox", b =>
                 {
                     b.Navigation("Notifications");
+                });
+
+            modelBuilder.Entity("FinalProject_ZPloy.Models.Task", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

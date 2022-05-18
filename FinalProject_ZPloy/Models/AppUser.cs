@@ -9,6 +9,11 @@ namespace FinalProject_ZPloy.Models
 {
     public class AppUser : IdentityUser<int>
     {
+        public AppUser()
+        {
+            this.CompletedTasks = new HashSet<Task>();
+            this.CreatedTasks = new HashSet<Task>();
+        }
         public override int Id { get; set; }
         public string XDUsername { get; set; }
         public string lolPassword { get; set; }
@@ -21,6 +26,6 @@ namespace FinalProject_ZPloy.Models
 
         // Navigation Properties
         public virtual ICollection<Task> CompletedTasks { get; set; }
-        //public virtual ICollection<Task> CreatedTasks { get; set; }
+        public virtual ICollection<Task> CreatedTasks { get; set; }
     }
 }

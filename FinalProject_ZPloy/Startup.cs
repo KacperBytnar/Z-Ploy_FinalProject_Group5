@@ -1,8 +1,10 @@
 using FinalProject_ZPloy.Models;
 using FinalProject_ZPloy.Services.EFServices;
 using FinalProject_ZPloy.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,12 +40,21 @@ namespace FinalProject_ZPloy
             IServiceCollection serviceCollection = services.AddHttpContextAccessor();
 
 
-
             services.AddIdentity<AppUser, IdentityRole<int>>()
                 .AddEntityFrameworkStores<AppDbContext>();
-                //.AddDefaultTokenProviders()
-                //.AddRoles<IdentityRole<int>>();
-
+            //.AddDefaultTokenProviders()
+            //.AddRoles<IdentityRole<int>>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/UserAccount/AccountLogIn";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/UserAccount/AccountLogIn";
+                // ReturnUrlParameter requires 
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));
         }
