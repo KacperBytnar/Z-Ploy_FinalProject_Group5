@@ -20,11 +20,27 @@ namespace FinalProject_ZPloy.Models
         public string? Location { get; set; }
         public DateTime DueDate { get; set; }
         public int Prize { get; set; }
-        public string PaymentMethod { get; set; }
         public bool isDone { get; set; }
         // Open | In proggress | Done
         //public string State { get; set; }
-        public string Category { get; set; }
+         public PaymentMethod Payment { get; set; }
+        public TaskCategory Categories {get;set;}
+
+        public enum TaskCategory
+        {
+            Cleaning,
+            MovingServices,
+            Handyman,
+            Gardening
+        }
+
+        public enum PaymentMethod
+        {
+            Cash,
+            MobilePay,
+            BankTransfer,
+            SecurePayment
+        }
 
 
         // Foreign Keys

@@ -6,30 +6,47 @@
     <a asp-page="/Tasks/CreateTask"> Create Task</a>
 </p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>  Task ID   </th>
-            <th>    Title  </th>
-            <th>    Description  </th>
-            <th>  Prize   </th>
-            <th>    Location  </th>
-            <th>    UserID  </th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.tasks)
-        {
-<tr>
-    <td> @item.TaskID </td>
-    <td> @item.Title </td>
-    <td> @item.Description </td>
-    <td> @item.Prize </td>
-    <td> @item.Location </td>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th> Task ID </th>
+                <th> Title </th>
+                <th> Description </th>
+                <th> Prize </th>
+                <th> Category </th>
+                <th> Location </th>
+                <th> Payment method </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.tasks)
+            {
+                <tr>
+                    <td> @item.TaskID </td>
+                    <td> @item.Title </td>
+                    <td> @item.Description </td>
+                    <td> @item.Prize </td>
+                    <td> @item.Categories </td>
+                    <td> @item.Location </td>
+                    <td> @item.Payment </td>
 
 
+                    <td>
+                        <a asp-page="/Tasks/DeleteTask" class="btn" asp-route-id="@item.TaskID">Delete</a>
+                    </td>
 
-</tr>}
-    </tbody>
-</table>
+                    <td>
+                        <a asp-page="/Tasks/EditTask" class="btn" asp-route-id="@item.TaskID">Edit</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+</div>
+
+

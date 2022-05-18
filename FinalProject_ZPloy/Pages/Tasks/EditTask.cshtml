@@ -1,0 +1,121 @@
+﻿@page
+@model FinalProject_ZPloy.Pages.Tasks.EditTaskModel
+@{
+}
+
+<h4> Edit Task</h4>
+
+
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-row">
+
+        <div class="col-md-3 mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Title *" asp-for="@Model.task.Title" />
+            <span asp-validation-for="@Model.task.Title" class="text-danger"></span>
+        </div>
+        <div class="col-md-3 mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Address *" asp-for="@Model.task.Location" />
+            <span asp-validation-for="@Model.task.Location" class="text-danger"></span>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control rounded-pill" placeholder="Price (Dkk) *" asp-for="@Model.task.Prize" />
+                <span asp-validation-for="@Model.task.Prize" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <input type="text" hidden="hidden" class="form-control rounded-pill" placeholder="Title *" asp-for="@Model.task.TaskID" />
+            <span asp-validation-for="@Model.task.TaskID" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3" style="margin-right:95px">
+            <select asp-for="@Model.task.Categories" class="form-control rounded-pill"
+                    asp-items="Html.GetEnumSelectList<Models.Task.TaskCategory>()">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="@Model.task.Categories" class="text-danger" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <select asp-for="@Model.task.Payment" class="form-control rounded-pill"
+                    asp-items="Html.GetEnumSelectList<Models.Task.PaymentMethod>()">
+                <option value="">-- Select Payment Method --</option>
+            </select>
+            <span asp-validation-for="@Model.task.Payment" class="text-danger" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-lg-12 mb-4">
+            <input type="text" style="width: 52rem; height: 150px; border-radius:25px" class="form-control " placeholder="Description *" asp-for="@Model.task.Description" />
+        </div>
+    </div>
+
+    <div class="form-group" style="display:flex">
+        <input type="submit" value="Save" class="btn btn-primary rounded-pill" style="width:100px; margin-right: 15px" />
+        <a class="btn btn-primary rounded-pill" asp-page="/Tasks/GetAllTasks"> Cancel </a>
+    </div>
+</form>
+
+
+
+
+@*<form class="form-horizontal" ; method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-group" style="width:25%">
+            <label asp-for="@Model.task.TaskID" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input hidden="hidden" asp-for="@Model.task.TaskID" type="text" class="form-control" />
+                <span asp-validation-for="@Model.task.TaskID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group" style="width:25%">
+            <label asp-for="@Model.task.Title" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.task.Title" type="text" class="form-control" />
+                <span asp-validation-for="@Model.task.Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group" style="width:25%">
+            <label asp-for="@Model.task.Location" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.task.Location" type="text" class="form-control" />
+                <span asp-validation-for="@Model.task.Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group" style="width:50%">
+            <label asp-for="@Model.task.Description" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.task.Description" type="text" class="form-control" style="height: 150px" />
+                <span asp-validation-for="@Model.task.Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group" style="margin-right:95px">
+            <select asp-for="@Model.task.Categories" class="control-label rounded-pill"
+                    asp-items="Html.GetEnumSelectList<Models.Task.TaskCategory>()">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="@Model.task.Categories" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <select asp-for="@Model.task.Payment" class="control-label rounded-pill"
+                    asp-items="Html.GetEnumSelectList<Models.Task.PaymentMethod>()">
+                <option value="">-- Select Payment Method --</option>
+            </select>
+            <span asp-validation-for="@Model.task.Payment" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="border-light">Edit</button>
+            </div>
+        </div>
+    </form>*@
+
+
+
+
+

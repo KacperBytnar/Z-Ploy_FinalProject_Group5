@@ -2,35 +2,93 @@
 @model FinalProject_ZPloy.Pages.Tasks.CreateTaskModel
 @{
 }
-<h1>Create Task</h1>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
+<h1 style="margin-bottom: 20px ">Create Task</h1>
 
-            <div class="form-group">
-                <label asp-for="@Model.task.Title" class="control-label"></label>
-                <input asp-for="@Model.task.Title" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.task.Description" class="control-label"></label>
-                <input asp-for="@Model.task.Description" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.task.Prize" class="control-label"></label>
-                <input asp-for="@Model.task.Prize" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.task.Location" class="control-label"></label>
-                <input asp-for="@Model.task.Location" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.task.PaymentMethod" class="control-label"></label>
-                <input asp-for="@Model.task.PaymentMethod" class="form-control" />
-            </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+<form method="post">
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Title *" asp-for="@Model.task.Title" />
+        </div>
+        <div class="col-md-3 mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Address *" asp-for="@Model.task.Location" />
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control rounded-pill" placeholder="Price (Dkk) *" asp-for="@Model.task.Prize" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3" style="margin-right:95px">
+            <select asp-for="@Model.task.Categories" class="form-control rounded-pill"
+                    asp-items="Html.GetEnumSelectList<Models.Task.TaskCategory>()">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="@Model.task.Categories" class="text-danger" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <select asp-for="@Model.task.Payment" class="form-control rounded-pill"
+                    asp-items="Html.GetEnumSelectList<Models.Task.PaymentMethod>()">
+                <option value="">-- Select Payment Method --</option>
+            </select>
+            <span asp-validation-for="@Model.task.Payment" class="text-danger" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-lg-12 mb-4">
+            <input type="text" style="width: 52rem; height: 150px; border-radius:25px" class="form-control " placeholder="Description *" asp-for="@Model.task.Description" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create Task" class="btn btn-primary rounded-pill" />
+    </div>
+</form>
+
+
+
+
+
+
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form method="post">
+
+                <div class="form-group" style="max-width: 15rem">
+                    <input type="text" class="form-control rounded-pill" placeholder="Title *" asp-for="@Model.task.Title" />
+                </div>
+                <div class="form-group">
+                    <input type="text" style="width: 30rem; height: 100px" class="form-control rounded-border" placeholder="Description *" asp-for="@Model.task.Description" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control rounded-pill" placeholder="Prize *" asp-for="@Model.task.Prize" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control rounded-pill" placeholder="Location *" asp-for="@Model.task.Location" />
+                </div>
+                <div class="form-group">
+                    <select asp-for="@Model.task.Payment" class="form-control rounded-pill"
+                            asp-items="Html.GetEnumSelectList<Models.Task.PaymentMethod>()">
+                        <option value="">-- Select Payment Method --</option>
+                    </select>
+                    <span asp-validation-for="@Model.task.Payment" class="text-danger" />
+                </div>
+                <div class="form-group">
+                    <select asp-for="@Model.task.Categories" class="form-control rounded-pill"
+                            asp-items="Html.GetEnumSelectList<Models.Task.TaskCategory>()">
+                        <option value="">-- Select Category --</option>
+                    </select>
+                    <span asp-validation-for="@Model.task.Categories" class="text-danger" />
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary rounded-pill" />
+                </div>
+            </form>
+        </div>
+    </div>*@

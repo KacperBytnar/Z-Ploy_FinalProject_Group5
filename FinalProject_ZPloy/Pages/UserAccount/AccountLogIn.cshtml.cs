@@ -45,7 +45,7 @@ namespace FinalProject_ZPloy.Pages.UserAccount
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Wrong username or password. Please try again.");
-                    LoginMessage = "Wrong username or password. Please try again.";
+                    //LoginMessage = "Wrong username or password. Please try again.";
                     return Page();
                 }
             }

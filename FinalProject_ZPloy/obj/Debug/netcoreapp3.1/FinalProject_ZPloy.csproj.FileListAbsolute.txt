@@ -175,3 +175,5 @@ C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\bin\Deb
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\UserAccount\LogOut.cshtml.g.cs
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\bin\Debug\netcoreapp3.1\FluentValidation.WebApi.dll
+C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\Tasks\DeleteTask.cshtml.g.cs
+C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\Tasks\EditTask.cshtml.g.cs
