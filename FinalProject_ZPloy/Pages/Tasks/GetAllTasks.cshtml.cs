@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FinalProject_ZPloy.Common;
+using FinalProject_ZPloy.Models;
 using FinalProject_ZPloy.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,11 @@ namespace FinalProject_ZPloy.Pages.Tasks
         public IEnumerable<Models.Task> tasks { get; set; }
 
         [BindProperty]
+        public List<AppUser> Users { get; set; } = new List<AppUser>();
+
+        [BindProperty]
         public int loggedUser { get; set;}
-        public bool loggerUserAppliedForTheTask{ get; set; }
+
 
         public GetAllTasksModel(ITaskService tservice, IBidService bService)
         {

@@ -10,10 +10,12 @@ namespace FinalProject_ZPloy.Services.EFServices
     public class EFBidService : IBidService
     {
         private AppDbContext context;
+        private IUserService userService;
 
-        public EFBidService(AppDbContext contextService)
+        public EFBidService(AppDbContext contextService, IUserService uService)
         {
             context = contextService;
+            userService = uService;
         }
 
         public IEnumerable<UserBidOnTask> GetAllBids()
@@ -92,6 +94,18 @@ namespace FinalProject_ZPloy.Services.EFServices
                 return true;
             }
             else return false;
+        }
+
+        // Returns list of users who made a bid on a specific task
+        public IEnumerable<AppUser> GetListOfUsersApplyingForSpecificTask(int taskId)
+        {
+            List<UserBidOnTask> userBids = context.UserBids.Where(t => t.TaskID == taskId).ToList();
+            List<AppUser> Users = new List<AppUser>();
+            foreach (var bid in userBids)
+            {
+                Users.Add(userService.GetUserById(bid.UserID));
+            }
+            return Users;
         }
     }
 }

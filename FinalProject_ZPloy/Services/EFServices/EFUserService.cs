@@ -49,5 +49,10 @@ namespace FinalProject_ZPloy.Services.EFServices
         {
             return userManager.Users.ToList();
         }
+
+        public AppUser GetUserById(int id)
+        {
+            return context.Users.Where(t => t.Id == id).FirstOrDefault(t => t.Id == id);
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace FinalProject_ZPloy.Services.Interfaces
         public UserBidOnTask GetBid(int id);
         public bool CheckWhetherUserAppliedForTheTask(int userId,int taskId);
         public List<int> GetListOfTasksUserHasAppliedFor(int userId);
+        public IEnumerable<AppUser> GetListOfUsersApplyingForSpecificTask(int taskId);
 
     }
 }
