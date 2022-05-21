@@ -34,6 +34,14 @@ namespace FinalProject_ZPloy.Models
                                 //.HasForeignKey(l => l.PerformerID)
                                 .HasForeignKey(p => p.CreatorID);
 
+            //modelBuilder
+            //    .Entity<Task>()
+            //    .Property(e => e.Categories)
+            //    .HasConversion(
+            //        v => v.ToString(),
+            //        v => (Models.Task.TaskCategory)Enum.Parse(typeof(Models.Task.TaskCategory), v));
+
+
             //modelBuilder.Entity<Task>()
             //.HasMany<AppUser>(s => s.Users)
             //.WithMany(c => c.CompletedTasks);

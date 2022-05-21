@@ -21,6 +21,11 @@ namespace FinalProject_ZPloy.Pages.Tasks
         public IEnumerable<Models.Task> tasks { get; set; }
 
         public string text { get; set; } = "Nobody has applied for the task yet!";
+        
+        // Criteria for category filtering
+        [BindProperty(SupportsGet = true)]
+        public string Criteria { get; set; } 
+
 
         [BindProperty]
         public int loggedUser { get; set;}
@@ -31,12 +36,19 @@ namespace FinalProject_ZPloy.Pages.Tasks
             taskService = tservice;
             bidService = bService;
         }
-        // check here whether logged user is creator and display stuff based on that 
-        // maybe just get task id instead of bool 
-        public void OnGet()
+
+        public IActionResult OnGet()
         {
             loggedUser = User.GetUserId();
-            tasks = taskService.GetAllTasks();
+            if (string.IsNullOrEmpty(Criteria) || Criteria== "All")
+            {
+                tasks = taskService.GetAllTasks();
+            }
+            else
+            {
+                tasks = taskService.GetTasksFilteredByCategory(Criteria);
+            }
+            return Page();
         }
     }
 }

@@ -15,7 +15,6 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         private AppDbContext context;
         private readonly UserManager<AppUser> userManager;
-        //public string UserID { get; set; }
 
         public EFTaskService(AppDbContext dbcontext, UserManager<AppUser> userManager)
         {
@@ -77,6 +76,14 @@ namespace FinalProject_ZPloy.Services.EFServices
         public IEnumerable<Models.Task> GetUserTasksCreatedByUserId(int userID)
         {
             return context.Tasks.Where(t => t.CreatorID == userID).ToList();
+        }
+
+
+        public IEnumerable<Models.Task> GetTasksFilteredByCategory(string category)
+        {
+            Models.Task.TaskCategory MyEnum;
+            var result =  Enum.TryParse(category, out MyEnum);
+            return context.Tasks.Where(t => t.Categories == MyEnum).ToList(); 
         }
     }
 }
