@@ -73,7 +73,10 @@ namespace FinalProject_ZPloy.Services.EFServices
                 context.SaveChanges();
             }
             return task;
-
+        }
+        public IEnumerable<Models.Task> GetUserTasksCreatedByUserId(int userID)
+        {
+            return context.Tasks.Where(t => t.CreatorID == userID).ToList();
         }
     }
 }

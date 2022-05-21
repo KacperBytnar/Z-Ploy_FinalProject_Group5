@@ -10,6 +10,7 @@ namespace FinalProject_ZPloy.Services.Interfaces
         void CreateTask(Models.Task task, int creatorID);
 
         IEnumerable<Models.Task> GetAllTasks();
+        IEnumerable<Models.Task> GetUserTasksCreatedByUserId(int userID);
 
         Models.Task GetTask(int id);
 

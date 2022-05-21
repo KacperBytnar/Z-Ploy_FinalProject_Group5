@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FinalProject_ZPloy.Common;
-using FinalProject_ZPloy.Models;
 using FinalProject_ZPloy.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FinalProject_ZPloy.Pages.Tasks
 {
-    [Authorize]
-    public class GetAllTasksModel : PageModel
+    public class MyTasksModel : PageModel
     {
         private ITaskService taskService;
         public IBidService bidService;
@@ -23,10 +20,10 @@ namespace FinalProject_ZPloy.Pages.Tasks
         public string text { get; set; } = "Nobody has applied for the task yet!";
 
         [BindProperty]
-        public int loggedUser { get; set;}
+        public int loggedUser { get; set; }
 
 
-        public GetAllTasksModel(ITaskService tservice, IBidService bService)
+        public MyTasksModel(ITaskService tservice, IBidService bService)
         {
             taskService = tservice;
             bidService = bService;
@@ -36,7 +33,7 @@ namespace FinalProject_ZPloy.Pages.Tasks
         public void OnGet()
         {
             loggedUser = User.GetUserId();
-            tasks = taskService.GetAllTasks();
+            tasks = taskService.GetUserTasksCreatedByUserId(loggedUser);
         }
     }
 }
