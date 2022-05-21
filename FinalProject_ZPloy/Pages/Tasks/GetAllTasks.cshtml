@@ -24,24 +24,41 @@
         <tbody>
             @foreach (var item in Model.tasks)
             {
-                <tr>
-                    <td> @item.TaskID </td>
-                    <td> @item.Title </td>
-                    <td> @item.Description </td>
-                    <td> @item.Prize </td>
-                    <td> @item.Categories </td>
-                    <td> @item.Location </td>
-                    <td> @item.Payment </td>
+            <tr>
+                <td> @item.TaskID </td>
+                <td> @item.Title </td>
+                <td> @item.Description </td>
+                <td> @item.Prize </td>
+                <td> @item.Categories </td>
+                <td> @item.Location </td>
+                <td> @item.Payment </td>
 
 
+                @if (item.CreatorID != Model.loggedUser)
+                {
+                    @if (!Model.bidService.CheckWhetherUserAppliedForTheTask(Model.loggedUser, item.TaskID))
+                    {
+                        <td>
+                            <button type="button" class="btn-dark" disabled><a asp-page="/Tasks/ApplyForTask" class="btn-dark" asp-route-taskId="@item.TaskID">Apply</a></button>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <button type="button" class="btn-dark" disabled>Applied Succesfully!</button>
+                        </td>
+                    }
+                }
+                else
+                {
                     <td>
-                        <a asp-page="/Tasks/DeleteTask" class="btn" asp-route-id="@item.TaskID">Delete</a>
+                        <a asp-page="/Tasks/DeleteTask" class="btn-danger" asp-route-id="@item.TaskID">Delete</a>
                     </td>
-
                     <td>
-                        <a asp-page="/Tasks/EditTask" class="btn" asp-route-id="@item.TaskID">Edit</a>
+                        <a asp-page="/Tasks/EditTask" class="btn-outline-light" asp-route-id="@item.TaskID">Edit</a>
                     </td>
-                </tr>
+                }
+            </tr>
 
             }
         </tbody>

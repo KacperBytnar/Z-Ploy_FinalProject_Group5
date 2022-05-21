@@ -15,7 +15,7 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         private AppDbContext context;
         private readonly UserManager<AppUser> userManager;
-        public string UserID { get; set; }
+        //public string UserID { get; set; }
 
         public EFTaskService(AppDbContext dbcontext, UserManager<AppUser> userManager)
         {
@@ -76,15 +76,4 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         }
     }
-
-    public static class UserHelpers
-    {
-        public static string GetUserId(this IPrincipal principal)
-        {
-            var claimsIdentity = (ClaimsIdentity)principal.Identity;
-            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            return claim.Value;
-        }
-    }
-
 }

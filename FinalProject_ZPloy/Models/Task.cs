@@ -28,7 +28,7 @@ namespace FinalProject_ZPloy.Models
 
         public enum TaskCategory
         {
-            Cleaning,
+            Cleaning,   
             MovingServices,
             Handyman,
             Gardening

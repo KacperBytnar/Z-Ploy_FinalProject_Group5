@@ -18,5 +18,6 @@ namespace FinalProject_ZPloy.Services.Interfaces
         void EditTask(Models.Task task);
 
         Models.Task UpdateTask(Models.Task task);
+
     }
 }

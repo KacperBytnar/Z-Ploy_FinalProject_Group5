@@ -36,6 +36,7 @@ namespace FinalProject_ZPloy
 
             services.AddTransient<IUserService, EFUserService>();
             services.AddTransient<ITaskService, EFTaskService>();
+            services.AddTransient<IBidService, EFBidService>();
 
             IServiceCollection serviceCollection = services.AddHttpContextAccessor();
 
