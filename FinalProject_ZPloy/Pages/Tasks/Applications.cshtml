@@ -10,7 +10,96 @@
     <a class="btn btn-secondary" asp-page="/Tasks/GetAllTasks"> All Tasks </br> </a>
 </p>
 </br>
-Aplications yo 
 
-@Model.Task.Title
-@Model.Task.Description
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
+                    <div class="img-square-wrapper">
+                        <img class="img" style="width:100%; max-width: 100px; height:100%; max-height:100px" src="https://ih1.redbubble.net/image.3309494085.9897/ur,pin_large_front,square,600x600.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">@Model.Task.Title</h6>
+                        <p class="card-text">@Model.Task.Description</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <a style="margin-right: 2px"> Location: </a> @Model.Task.Location <a style="margin-right: 40px"></a>
+                        <a style="margin-right: 2px"> Category: </a> @Model.Task.Categories <a style="margin-right: 40px"></a>
+                        <a style="margin-right: 2px"> Payment Type: </a> @Model.Task.Payment <a style="margin-right: 40px"></a>
+                        <a style="margin-right: 2px"> Price: </a> @Model.Task.Prize <a style="margin-right: 40px"></a>
+
+
+                        @*<a style="float: right; width: 80px" class="btn btn-secondary" asp-page="/Tasks/DeleteTask" asp-route-id="@Model.Task.TaskID"> Delete </a>*@
+                        @*<a style="margin-right:10px; float:right; width: 80px" class="btn btn-secondary" asp-page="/Tasks/EditTask" asp-route-id="@Model.Task.TaskID"> Apply </a>*@
+                        @*@if (Model.Task.CreatorID != Model.loggedUser)
+                            {
+                                @if (!Model.bidService.CheckWhetherUserAppliedForTheTask(Model.loggedUser, Model.Task.TaskID))
+                                {
+                                    <td>
+                                        <a type="button" style="margin-right:10px; float:right; width: 80px" class="btn btn-secondary" asp-page="/Tasks/ApplyForTask" asp-route-taskId="@Model.Task.TaskID">Apply</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <button type="button" disabled style="margin-right:10px; float:right; width: 135px" class="btn btn-secondary" asp-page="/Tasks/ApplyForTask" asp-route-taskId="@Model.Task.TaskID">Applied Succesfully!</button>
+
+                                    </td>
+                                }
+                            }
+                            else
+                            {
+                                <td>
+                                    <a style="margin-right:10px; float:right; width: 130px" class="btn btn-secondary" asp-page="/Tasks/Applications" asp-route-id="@Model.Task.TaskID"> Applications </a>
+                                </td>
+                            }*@
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@if (Model.UsersApplying.Count != 0 && Model.bidService.GetBidByTaskId(Model.Task.TaskID).isAccepted == false)
+{
+    <h1 style="text-align:center; font-family:" Comic Sans MS">Users applying for this task:</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr style="text-align:center">
+                <th>Username</th>
+                <th>Avatar</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UsersApplying)
+            {
+                <tr>
+                    <td class="text-center">@item.UserName</td>
+                    <td>
+                        <img src="/images/ProductImages/@item.Picture" width="60" height="70">
+                    </td>
+                    <td class="text-md-center">@item.FirstName @item.LastName</td>
+                    <td class="text-md-center">@item.Email</td>
+                    <td class="text-md-left">
+                        <form method="post">
+                            <button type="submit" asp-page-handler="Approve" asp-route-ID="@Model.Task.TaskID" class="btn1 btn-dark btn-group-lg pull-right">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@*else if (Model.bidService.GetBidByTaskId(Model.Task.TaskID).isAccepted == true)
+{
+    <h1 style="text-align:center; font-family:" Comic Sans MS">@Model.bidService.</h1>
+}*@

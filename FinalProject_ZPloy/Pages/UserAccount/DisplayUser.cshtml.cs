@@ -29,7 +29,15 @@ namespace FinalProject_ZPloy.Pages.UserAccount
         {
             UserID = User.GetUserId();
             LoggedUser = userService.GetUserById(UserID);
-            LoggedUser.Picture = "/Images/Avatars/" + LoggedUser.Picture;
+            if (!string.IsNullOrEmpty(LoggedUser.Picture))
+            {
+                LoggedUser.Picture = "/Images/Avatars/" + LoggedUser.Picture;
+            }
+            else
+            {
+                LoggedUser.Picture = "/Images/Avatars/avatar7.png";
+
+            }
         }
     }
 }

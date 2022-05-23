@@ -97,7 +97,7 @@ namespace FinalProject_ZPloy.Services.EFServices
         }
 
         // Returns list of users who made a bid on a specific task
-        public IEnumerable<AppUser> GetListOfUsersApplyingForSpecificTask(int taskId)
+        public ICollection<AppUser> GetListOfUsersApplyingForSpecificTask(int taskId)
         {
             List<UserBidOnTask> userBids = context.UserBids.Where(t => t.TaskID == taskId).ToList();
             List<AppUser> Users = new List<AppUser>();
@@ -106,6 +106,18 @@ namespace FinalProject_ZPloy.Services.EFServices
                 Users.Add(userService.GetUserById(bid.UserID));
             }
             return Users;
+        }
+
+        public UserBidOnTask GetBidByTaskId(int id)
+        {
+            return context.UserBids.Where(t => t.TaskID == id).FirstOrDefault()/*(t => t.BidID == id)*/;
+        }
+
+
+        public AppUser GetApprovedUser(UserBidOnTask bid)
+        {
+            //return context.UserBids.Where(t => t.TaskID == id).FirstOrDefault()/*(t => t.BidID == id)*/;
+            return new AppUser();
         }
     }
 }

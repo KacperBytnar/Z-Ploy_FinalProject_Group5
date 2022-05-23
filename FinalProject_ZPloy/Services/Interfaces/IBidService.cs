@@ -13,9 +13,11 @@ namespace FinalProject_ZPloy.Services.Interfaces
         public void ApproveBid(UserBidOnTask bid);
         public void RejectBid(UserBidOnTask bid);
         public UserBidOnTask GetBid(int id);
+        public UserBidOnTask GetBidByTaskId(int id);
+        public AppUser GetApprovedUser(UserBidOnTask bid);
         public bool CheckWhetherUserAppliedForTheTask(int userId,int taskId);
         public List<int> GetListOfTasksUserHasAppliedFor(int userId);
-        public IEnumerable<AppUser> GetListOfUsersApplyingForSpecificTask(int taskId);
+        public ICollection<AppUser> GetListOfUsersApplyingForSpecificTask(int taskId);
 
     }
 }
