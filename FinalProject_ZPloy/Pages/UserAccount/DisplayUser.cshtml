@@ -2,9 +2,70 @@
 @model FinalProject_ZPloy.Pages.UserAccount.DisplayUserModel
 @{ }
 
-@foreach (var user in Model.users)
-{
-<h1>Name: @user.UserName</h1>
-                <h1>Password: @user.PasswordHash</h1>
-                                <h1>Description: <\br>@user.Description</h1>}
-<h1>ID: <\br>@Model.UserID</h1>
+<style>
+
+    .profile {
+        margin: auto;
+        width: 60%;
+        padding-top: 20px;
+    }
+    label{
+        font-weight:600;
+        margin-right:10px;
+    }
+</style>
+
+
+<section class="section about-section gray-bg" id="about">
+    <div class="profile">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">About Me</h3>
+
+                    <p>@Model.LoggedUser.Description </p>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>   Name: </label>
+                                <p>@Model.LoggedUser.UserName</p>
+                            </div>
+                            <div class="media">
+                                <label>   Full Name: </label>
+                                <p>@Model.LoggedUser.FirstName @Model.LoggedUser.LastName</p>
+                            </div>
+                            <div class="media">
+                                <label>   Age: </label>
+                                <p>@Model.LoggedUser.Age</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label> Address: </label>
+                                <p>   @Model.LoggedUser.StreetAddress, @Model.LoggedUser.ZipCode @Model.LoggedUser.City </p>
+                            </div>
+                            <div class="media">
+                                <label> Email:</label>
+                                <p>@Model.LoggedUser.Email</p>
+                            </div>
+                            <div class="media">
+                                <label> Phone: </label>
+                                <p>   @Model.LoggedUser.PhoneNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="@Model.LoggedUser.Picture" class="img-fluid img-thumbnail" title="" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class=" d-flex mt-2" style="float: right; margin-bottom:150px; margin-left:100px;">
+            <a asp-page="/UserAccount/EditUser" class="btn1 btn-dark float-xl-left" style=" font-size: x-large">Edit Profile</a>
+        </div>
+
+    </div>
+</section>

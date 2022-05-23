@@ -15,7 +15,8 @@ namespace FinalProject_ZPloy.Pages.UserAccount
     public class DisplayUserModel : PageModel
     {
         [BindProperty]
-        public List<AppUser> users { get; set; }
+        public AppUser LoggedUser { get; set; }
+    
         private IUserService userService;
         [BindProperty]
         public int UserID { get; set; }
@@ -26,8 +27,9 @@ namespace FinalProject_ZPloy.Pages.UserAccount
         
         public void OnGet()
         {
-            users = userService.GetAllUsers();
             UserID = User.GetUserId();
+            LoggedUser = userService.GetUserById(UserID);
+            LoggedUser.Picture = "/Images/Avatars/" + LoggedUser.Picture;
         }
     }
 }

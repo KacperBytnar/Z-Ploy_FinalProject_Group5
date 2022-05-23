@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FinalProject_ZPloy.Common;
 using FinalProject_ZPloy.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,6 +14,8 @@ namespace FinalProject_ZPloy.Pages.Tasks
         ITaskService taskService;
         [BindProperty]
         public Models.Task task { get; set; }
+        [BindProperty]
+        public int UserID { get; set; }
 
         public EditTaskModel(ITaskService service)
         {
@@ -22,7 +25,8 @@ namespace FinalProject_ZPloy.Pages.Tasks
         public void OnGet(int id)
         {
             task = taskService.GetTask(id);
-
+            UserID = User.GetUserId();
+            
         }
 
         public IActionResult OnPost()
@@ -31,7 +35,7 @@ namespace FinalProject_ZPloy.Pages.Tasks
             {
                 return Page();
             }
-            taskService.EditTask(task);
+            taskService.UpdateTask(task, UserID);
             return RedirectToPage("/Tasks/GetAllTasks");
         }
 

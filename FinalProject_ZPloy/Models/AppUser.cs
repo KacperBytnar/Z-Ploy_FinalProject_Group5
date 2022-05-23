@@ -12,20 +12,20 @@ namespace FinalProject_ZPloy.Models
         public AppUser()
         {
             this.CompletedTasks = new HashSet<Task>();
-            //this.CreatedTasks = new HashSet<Task>();
         }
         public override int Id { get; set; }
-        //public string XDUsername { get; set; }
-        //public string lolPassword { get; set; }
-        public string? Gender { get; set; }
         public int? Age { get; set; }
         public string? Picture { get; set; }
         public string? Description { get; set; }
-        //public string? Email { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? StreetAddress { get; set; }
+        public string? City { get; set; }
+        public string? ZipCode { get; set; }
 
 
         // Navigation Properties
         public virtual ICollection<Task> CompletedTasks { get; set; }
-        //public virtual ICollection<Task> CreatedTasks { get; set; }
+
     }
 }

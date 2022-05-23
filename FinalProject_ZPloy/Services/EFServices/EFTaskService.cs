@@ -48,20 +48,20 @@ namespace FinalProject_ZPloy.Services.EFServices
 
         }
 
-        public void EditTask(Models.Task task)
+        public void EditTask(Models.Task task, int creatorID)
         {
-            task.CreatorID = 1; //not working without this line
+            task.CreatorID = creatorID;
             context.Tasks.Update(task);
             context.SaveChanges();
         }
 
-        public Models.Task UpdateTask(Models.Task task)
+        public Models.Task UpdateTask(Models.Task task, int creatorID)
         {
 
             Models.Task tsk = context.Tasks.Where(t => t.TaskID == task.TaskID).FirstOrDefault();
             if (tsk != null)
             {
-                task.CreatorID = 1;
+                task.CreatorID = creatorID;
                 tsk.Title = task.Title;
                 tsk.Location = task.Location;
                 tsk.Description = task.Description;

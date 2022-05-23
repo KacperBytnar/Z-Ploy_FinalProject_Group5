@@ -11,7 +11,7 @@ namespace FinalProject_ZPloy.Services.Interfaces
     {
         public List<AppUser> GetAllUsers();
         public void CreateUser(AppUser user);
-        public bool ValidateUser(string login, string password);
         public AppUser GetUserById(int id);
+        public Task<AppUser> EditUser(AppUser user);
     }
 }

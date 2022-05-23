@@ -20,10 +20,8 @@ namespace FinalProject_ZPloy.Models
         public string? Location { get; set; }
         public DateTime DueDate { get; set; }
         public int Prize { get; set; }
-        public bool isDone { get; set; }
-        // Open | In proggress | Done
-        //public string State { get; set; }
-         public PaymentMethod Payment { get; set; }
+        public TaskState State { get; set; }
+        public PaymentMethod Payment { get; set; }
         public TaskCategory Categories {get;set;}
 
         public enum TaskCategory
@@ -32,6 +30,13 @@ namespace FinalProject_ZPloy.Models
             MovingServices,
             Handyman,
             Gardening
+        }
+
+        public enum TaskState
+        {
+            Open,
+            InProgress,
+            Closed
         }
 
         public enum PaymentMethod

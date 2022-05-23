@@ -19,9 +19,9 @@ namespace FinalProject_ZPloy.Services.Interfaces
 
         void DeleteTask(int id);
 
-        void EditTask(Models.Task task);
+        void EditTask(Models.Task task, int creatorID);
 
-        Models.Task UpdateTask(Models.Task task);
+        Models.Task UpdateTask(Models.Task task, int creatorID);
 
     }
 }

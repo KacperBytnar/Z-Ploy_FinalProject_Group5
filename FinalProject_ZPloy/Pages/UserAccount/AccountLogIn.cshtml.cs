@@ -55,7 +55,11 @@ namespace FinalProject_ZPloy.Pages.UserAccount
 
                     //var userID = this.userService.getuser
                     await HttpContext.SignInAsync("CookiesUserAuth", claimsPrincipal);
-                    return RedirectToPage(ReturnURL);
+                    if (ReturnURL != null)
+                    {
+                        return RedirectToPage(ReturnURL);
+                    }
+                    else return RedirectToPage("/Index");
                 }
                 else
                 {

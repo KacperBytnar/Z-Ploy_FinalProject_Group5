@@ -180,3 +180,4 @@ C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Deb
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\Tasks\MyTasks.cshtml.g.cs
 C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\Tasks\Applications.cshtml.g.cs
+C:\Users\Acer\Desktop\FINALProject\FinalProject_ZPloy\FinalProject_ZPloy\obj\Debug\netcoreapp3.1\Razor\Pages\UserAccount\EditUser.cshtml.g.cs
